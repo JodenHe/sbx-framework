@@ -22,10 +22,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties="spring.autoconfigure.exclude=com.mst.sbx.common.config.UReportConfig")
+@SpringBootTest
+@Transactional
 public class CodeMapperTest {
 
     @Autowired
@@ -33,18 +35,26 @@ public class CodeMapperTest {
 
     @Test
     public void testInsert() {
-        Code code = new Code();
+        int result = insert();
+        Assert.assertNotEquals(0, result);
+    }
+    
+    private int insert() {
+    	Code code = new Code();
         code.setCode("test");
         code.setDescription("测试");
         code.setEnabledFlag("Y");
         code.setAttr1("aaa");
         int result = codeMapper.insertSelective(code);
-        Assert.assertNotEquals(0, result);
+        return result;
     }
 
     @Test
     public void testUpdateWith() {
-        Code code = codeMapper.selectByPrimaryKey(1L);
+    	insert();
+    	Code codeQuery = new Code();
+    	codeQuery.setCode("test");
+        Code code = codeMapper.selectOne(codeQuery);
         code.setCode("test2");
         int result = codeMapper.updateByPrimaryKey(code);
         Assert.assertNotEquals(0, result);

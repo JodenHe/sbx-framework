@@ -17,10 +17,8 @@ package com.mst.sbx.common.config;
 
 import javax.servlet.Servlet;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
@@ -30,10 +28,8 @@ import com.bstek.ureport.console.UReportServlet;
  * UReport 配置类
  * @author xiaofeng.he
  */
-@ImportResource("classpath:ureport-console-context.xml")
-@EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages = "com.mst.sbx")
+@ImportResource("classpath:ureport-console-context.xml")
 public class UReportConfig {
 	
 	/** servlet url mapping */
