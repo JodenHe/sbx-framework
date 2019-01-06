@@ -3,9 +3,16 @@ jdk:
   - oraclejdk8
 services:
   - mysql
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
 before_install:
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('123456') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;" | mysql -u root
-  # - sudo mysql_upgrade -u root -p123456
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('123456') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -p123456
   - sudo service mysql restart
   - mysql -e 'CREATE DATABASE db_sbx;'
   - mysql -u root db_sbx < doc/script/mysql/schema.sql
