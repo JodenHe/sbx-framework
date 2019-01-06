@@ -13,13 +13,15 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
-package com.mst.sbx.common.mapper;
+package com.mst.sbx.common.mybatis;
 
 import tk.mybatis.mapper.common.Mapper;
 
 /**
  * 基础 mapper
+ * <p>
+ * 注意，该类不能放在spring 扫描的路径，否则报错
+ * 见 <a href="https://github.com/abel533/Mapper/issues/5"> https://github.com/abel533/Mapper/issues/5 </a>
  * @author xiaofeng.he
  */
 public interface SbxBaseMapper<T> extends Mapper<T> {

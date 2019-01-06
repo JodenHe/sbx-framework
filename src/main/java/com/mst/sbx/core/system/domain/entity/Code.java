@@ -13,11 +13,11 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.mst.sbx.core.system.domain.entity;
 
 import com.mst.sbx.common.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,6 +29,7 @@ import javax.persistence.Table;
  */
 @Table(name = "sbx_sys_code_b")
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Code extends BaseEntity {
 
     /** ID标记，自增 */
